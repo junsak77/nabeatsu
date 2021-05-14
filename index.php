@@ -57,6 +57,8 @@ function foolize($i) {
       $add = "ﾊｯﾋﾟｬｸ";
     } elseif($digit == 1 && $order != 1) {
       $add = $order_name[$order];
+    } elseif($digit == 0) {
+      $add = "";
     } else {
       $add = $foolish[$digit] . $order_name[$order];
     }
