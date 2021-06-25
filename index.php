@@ -17,8 +17,11 @@ function is_fool($i) {
   return ($i % 3 == 0) || (strpos($i, '3') !== false);
 }
 
-// 数字をアホにする(4桁まで対応)
+// 数字をアホにする(8桁まで対応)
 function foolize($i) {
+  if($i > 9999) {
+    return foolize($i / 10000) . "ﾏﾝ" . foolize($i % 10000);
+  }
   $foolish = [
     0 => "",
     1 => "ｲﾁ",
