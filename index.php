@@ -20,7 +20,7 @@ function is_fool($i) {
 // 数字をアホにする(8桁まで対応)
 function foolize($i) {
   if($i > 9999) {
-    return foolize($i / 10000) . "ﾏﾝ" . foolize($i % 10000);
+    return foolize(floor($i / 10000)) . "ﾏﾝ" . foolize($i % 10000);
   }
   $foolish = [
     0 => "",
