@@ -1,77 +1,39 @@
-<?php
+<!doctype html>
+<html lang="ja">
+  <head>
+    <?php
+    include "function.php"
+    ?>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-// 数字を数え上げる
-function count_up() {
-  $limit = isset($_GET['n']) ? $_GET['n'] : 40;
-  for($i = 1; $i <= $limit; $i++) {
-    if(is_fool($i)) {
-      echo "<li>" . foolize($i) . "www (" . $i . ")" . "</li>";
-    } else {
-      echo "<li>" . $i . "</li>";
-    }
-  }
-}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-// アホになるかどうかを判定(3の倍数 or 3がつく)
-function is_fool($i) {
-  return ($i % 3 == 0) || (strpos($i, '3') !== false);
-}
+    <title>3の倍数と3のつく数字でアホになるPHP</title>
+  </head>
+  <body>
+    <h1>3の倍数と3のつく数字でアホになるPHP</h1>
+    <p>いくつまで数える？(初期値:40)</p>
+    <form action="" method="get">
+      <input type="n" name="n" value=40 />
+      <input type="submit" />
+    </form>
+    <ul>
+      <?php count_up(); ?>
+    </ul>
+    <div id="bottom">ｵﾓﾛｰ!!</div
 
-// 数字をアホにする(8桁まで対応)
-function foolize($i) {
-  if($i > 9999) {
-    return foolize(floor($i / 10000)) . "ﾏﾝ" . foolize($i % 10000);
-  }
-  $foolish = [
-    0 => "",
-    1 => "ｲﾁ",
-    2 => "ﾆ",
-    3 => "ｻﾝ",
-    4 => "ﾖﾝ",
-    5 => "ｺﾞ",
-    6 => "ﾛｸ",
-    7 => "ﾅﾅ",
-    8 => "ﾊﾁ",
-    9 => "ｷｭｰ"
-  ];
+    <!-- Optional JavaScript; choose one of the two! -->
 
-  $order_name = [
-    4 => "ｾﾝ",
-    3 => "ﾋｬｸ",
-    2 => "ｼﾞｭｰ",
-    1 => ""
-  ];
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-  $digits = str_split($i % 10000);
-  $order = strlen($i);
-  $ret = "";
-
-  foreach($digits as $digit) {
-    $add = "";
-    if($digit == 3 && $order == 4) {
-      $add = "ｻﾝｾﾞﾝ";
-    } elseif($digit == 8 && $order == 4) {
-      $add = "ﾊｯｾﾝ";
-    } elseif($digit == 3 && $order == 3) {
-      $add = "ｻﾝﾋﾞｬｸ";
-    } elseif($digit == 6 && $order == 3) {
-      $add = "ﾛｯﾋﾟｬｸ";
-    } elseif($digit == 8 && $order == 3) {
-      $add = "ﾊｯﾋﾟｬｸ";
-    } elseif($digit == 1 && $order != 1) {
-      $add = $order_name[$order];
-    } elseif($digit == 0) {
-      $add = "";
-    } else {
-      $add = $foolish[$digit] . $order_name[$order];
-    }
-    $ret .= $add;
-    $order -= 1;
-  }
-  return $ret;
-}
-?>
-<ul>
-  <?php count_up(); ?>
-</ul>
-<div id="bottom">ｵﾓﾛｰ!!</div>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
